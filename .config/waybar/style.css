@@ -1,0 +1,305 @@
+/* =============================================================================
+ *
+ * Waybar configuration
+ *
+ * Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
+ *
+ * =========================================================================== */
+
+/* -----------------------------------------------------------------------------
+ * Keyframes
+ * -------------------------------------------------------------------------- */
+
+@import "color.css";
+
+/*
+  Polar Night
+  nord0  #2e3440
+  nord1  #3b4252
+  nord2  #434c5e
+  nord3  #4c566a
+  Snow Storm
+  nord4  #d8dee9
+  nord5  #e5e9f0
+  nord6  #eceff4
+  Frost
+  nord7  #8fbcbb
+  nord8  #88c0d0
+  nord9  #81a1c1
+  nord10 #5e81ac
+  Aurora
+  nord11 #bf616a
+  nord12 #d08770
+  nord13 #ebcb8b
+  nord14 #a3be8c
+  nord15 #b48ead
+  */
+
+/* -----------------------------------------------------------------------------
+   * Base styles
+   * -------------------------------------------------------------------------- */
+
+/* Reset all styles */
+
+* {
+
+
+  color: @white; /*@lavender;*/
+  border: 1px;
+  padding: 0px 0px;
+  margin: 0px;
+  font-family: "JetbrainsMono Nerd Font";
+  font-size: 12px;
+  /* font-weight: bold; */
+  /* padding-bottom:4px;
+      padding-top: 4px; */
+  transition: all 0.5s ease;
+}
+
+window#waybar {
+    background: transparent;
+    color: white;
+}
+
+#tags {
+	  background-color: #00082c;
+    margin-top: 5px;
+    margin-left: 10px;
+	  border-radius: 30px;
+}
+#tags button {
+    padding: 5px 10px;
+    color: #ffffff;
+}
+
+#tags button.focused {
+    color: #610530;
+    background-color: #020270;
+    border-radius: 30px;
+}
+
+#tags button:hover {
+	background-color: #000000;
+	color: #000000;
+	border-radius: 30px;
+}
+
+
+
+#clock,
+#custom-clipboard,
+#battery,
+#cpu,
+#memory,
+#backlight,
+#network,
+#pulseaudio,
+#tray,
+#custom-networkspeed,
+
+
+/* -----------------------------------------------------------------------------
+   * Module styles
+   * -------------------------------------------------------------------------- */
+
+#pulseaudio, #memory, #tray, #clock, #battery, #cpu, #backlight, #network, #bluetooth, #custom-networkspeed, #custom-clipboard {
+	background-color: #00082c;
+	padding: 0px 7px;
+  margin-top: 5px;
+	border-radius: 20px;
+}
+
+
+#clock {
+  color: @white;/*@mauve;*/
+  border-radius: 20px;
+}
+
+
+#pulseaudio{
+  color: @white;
+  /* border-bottom: 2px solid @yellow; */
+  border-radius: 20px 0px 0px 20px;
+}
+
+#pulseaudio.muted {
+  color: @red;
+  /* border-bottom: 2px solid #3b4252; */
+  border-radius: 20px 0px 0px 20px;
+}
+
+#backlight {
+  color: @white;
+  /* border-bottom: 2px solid @yellow; */
+  border-radius: 0px 20px 20px 0px;
+  margin-right: 10px;
+}
+
+#battery {
+  color: @white;
+  /* border-bottom: 2px solid #d8dee9; */
+  border-radius: 20px 20px 20px 20px;
+  margin-right: 20px;
+}
+
+#battery.charging {
+  color: @white;
+  /* border-bottom: 2px solid #81a1c1; */
+}
+
+@keyframes blink {
+  to {
+    color: @red;
+    /* border-bottom: 2px solid @red; */
+  }
+}
+
+#battery.critical:not(.charging) {
+  color: #bf616a;
+  /* border-bottom: 2px solid #bf616a; */
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#cpu {
+  color: #cad0db;
+  border-radius: 20px 0px 0px 20px;
+}
+
+#memory {
+  color: #cad0db;
+  border-radius: 0px 20px 20px 0px;
+
+  margin-right: 10px;
+}
+
+#network.disabled {
+  color: #bf616a;
+}
+
+#network {
+  color: @white;
+  /* border-bottom: 2px solid @green; */
+  border-radius: 20px 0px 0px 20px;
+  margin-right: 0px;
+}
+
+#network.disconnected {
+  color: #bf616a;
+  /* border-bottom: 2px solid #bf616a; */
+}
+
+#bluetooth {
+  color: @white;
+  padding-right: 10px;
+  margin-right: 10px;
+  border-radius: 20px 20px 20px 20px;
+}
+
+#tray {
+  /* background-color: @base; */
+  margin: 0px;
+  border-radius: 0px 0px 0px 0px;
+}
+
+#custom-clipboard {
+  /* background-color: @base; */
+  margin-right: 10px;
+  border-radius: 20px 20px 20px 20px;
+}
+
+#window {
+  border-style: hidden;
+  margin-left: 10px;
+  /* margin-top:1px;  
+      padding: 8px 1rem; */
+  margin-right: 10px;
+  color: #eceff4;
+}
+#custom-networkspeed{
+  /* background-color: @base; */
+  margin-right: 10px;
+  border-radius: 0px 20px 20px 0px;
+}
+
+
+/* window#waybar {
+      background: #2d2a2e;
+  }
+  
+  * {
+      color: #c8b9a9;
+      font-family: Ubuntu Mono, sans-serif;
+      font-size: 12px;
+  }
+  
+  #tags button.focused {
+      color: #f2e5bc;
+  }
+  
+  #tags button {
+      color: #c8b9a9;
+  }
+  
+  .separator {
+      background-color: #c8b9a9;
+  }
+  
+  #mode {
+      color: #ebcb8b;
+  }
+  
+  #clock {
+      color: #a3be8c;
+  }
+  
+  #battery {
+      color: #d8dee9;
+  }
+  
+  #battery.charging {
+      color: #b48ead;
+  }
+  
+  #battery.critical:not(.charging) {
+      color: #bf616a;
+  }
+  
+  #cpu {
+      color: #a3be8c;
+  }
+  
+  #memory {
+      color: #d3869b;
+  }
+  
+  #network {
+      color: #8fbcbb;
+  }
+  
+  #network.disabled {
+      color: #bf616a;
+  }
+  
+  #network.disconnected {
+      color: #bf616a;
+  }
+  
+  #pulseaudio {
+      color: #b48ead;
+  }
+  
+  #pulseaudio.muted {
+      color: #bf616a;
+  }
+  
+  #temperature {
+      color: #8fbcbb;
+  }
+  
+  #temperature.critical {
+      color: #bf616a;
+  } */

@@ -1,0 +1,134 @@
+{
+    "layer": "top",
+    "position": "top",
+    "cursor": "\uf0e2",
+    "height": 32,
+
+    "modules-left": ["river/tags"],
+    "modules-center": ["clock"],
+    "modules-right": ["cpu", "memory", "pulseaudio", "backlight", "custom/clipboard", "network", "custom/networkspeed", "bluetooth", "battery"],
+
+    "river/tags": {
+      "num-tags": 9,
+      "tag-labels": [
+        "\uf120",
+        "\uf269",
+        "󰨞",
+        "\uf115",
+        "󰓇",
+        "\uf1b6",
+        "\uf1b2",
+        "\uf11b",
+        "\uf013"
+      ],
+      "disable-click": false
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": " {usage}%",
+        "max-length": 10,
+        "on-click": "foot -e btop",
+        "cursor": "\uf0a9"
+    },
+
+    "clock": {
+        "timezone": "Asia/Kolkata",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": " {:%d/%m/%Y}",
+        "format": " {:%H:%M}",
+        "cursor": "\uf0a9"
+
+    },
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "tooltip": true,
+        "cursor": "\uf0a9",
+        "tooltip-format": "Brightness: {percent}% "
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+          },
+	      "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰂄 {capacity}%",
+        "format-alt": "{icon}",
+        "cursor": "\uf0a9",
+	      "format-icons": ["󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"]
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "",
+        "format-icons": {
+            "default": ["", "", " "]
+        },
+        "tooltip-format": "{volume}% volume",
+        "on-click": "pavucontrol",
+        "cursor": "\uf0a9"
+    },
+
+    "memory": {
+        "format": "  {}󱉸",
+        "interval": 1,
+        "states": {
+          "warning": 50,
+          "critical": 90
+        },
+        "tooltip": true,
+        "cursor": "\uf0a9",
+        "on-click": "foot -e btop"
+    },
+
+    "network": {
+        "format": "{icon}",
+        "format-icons": {
+          "wifi": [
+            "󰤨"
+          ],
+          "ethernet": [
+            "󰈀"
+          ],
+          "disconnected": [
+            "󰖪"
+          ],
+          "linked": [
+            "󰈁"
+          ]
+        },
+        "tooltip-format": "Connected to {essid}",
+        "tooltip-format-ethernet": "{ifname} ",
+        "on-click": "foot -e nmtui",
+        "cursor": "\uf0a9"
+      },
+
+    "bluetooth": {
+        "format": "󰂯",
+    	  "format-disabled": "󰂲", 
+   	    "format-connected": "󰂱",
+    	  "tooltip-format": "{controller_alias}\t{controller_address}",
+	      "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+    	  "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+	      "on-click": "blueman-manager"
+    },
+
+    "custom/clipboard": {
+      "interval": 5,
+      "exec": "/home/void_alan/.config/waybar/clipcount.sh",
+      "return-type": "json",
+      "format": "{}",
+      "signal": 9,
+      "on-click": "cliphist list | wofi --show dmenu | cliphist decode | wl-copy"
+    },
+      
+    "custom/networkspeed": {
+        "format": "{}",
+        "interval": 2,
+        "exec": "/home/void_alan/.config/waybar/netspeed.sh",
+        "tooltip": true,
+        "tooltip-format": "wlo1:\n{}"
+    }
+}

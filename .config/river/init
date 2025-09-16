@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# Source the user's profile and start session-related daemons
+. "$HOME/.profile"
+
+xfsettingsd &
+
+
+exec . ~/.profile &
+
+
+exec ~/.config/river/startup.sh &
+
+
+riverctl map normal Super Return spawn foot
+riverctl map normal Mod4 Return spawn foot
+riverctl map normal Alt+Control T spawn foot
+
+# Apply river configuration
+exec ~/.config/river/riverctl-config.sh &
+
+
+/usr/libexec/polkit-gnome-authentication-agent-1 &
+
+riverctl default-layout wideriver
+
+wideriver --layout left --stack even --count 1 --ratio 0.45 --inner-gaps 10 --outer-gaps 10 &
+
+
+
+exec dbus-update-activation-environment DISPLAY  WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=River
+
+
+
+
